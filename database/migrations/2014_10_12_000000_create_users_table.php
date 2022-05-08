@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('username', 20)->unique();
+            $table->string('email', 120)->unique();
+            $table->string('full_name', 120);
+            $table->text('password');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('profile_picture', 2000)->nullable(); /* max url length = 2000 */
             $table->rememberToken();
             $table->timestamps();
         });

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'index'])->name('homepage');
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
+
+Route::get('/post', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
+Route::get('/post/edit/{post:slug}', [PostController::class, 'edit'])->name('post.edit');
+Route::post('/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
+
+Route::post('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');

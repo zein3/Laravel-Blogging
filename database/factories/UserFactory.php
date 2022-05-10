@@ -18,10 +18,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'username' => $this->faker->unique()->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'full_name' => $this->faker->name(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'email_verified_at' => now(),
+            'profile_picture' => $this->faker->imageUrl(),
             'remember_token' => Str::random(10),
         ];
     }
@@ -36,6 +38,20 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user's should not have a profile picture.
+     *
+     * @return static
+     */
+    public function noProfilePicture()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'profile_picture' => null,
             ];
         });
     }

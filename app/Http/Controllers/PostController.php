@@ -10,6 +10,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -31,6 +32,7 @@ class PostController extends Controller
      * Store a newly created post in database.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Post $post)
@@ -41,7 +43,7 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -52,7 +54,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified post.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -64,7 +66,7 @@ class PostController extends Controller
      * Update the specified post.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Post          $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -75,7 +77,7 @@ class PostController extends Controller
     /**
      * Remove a post.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

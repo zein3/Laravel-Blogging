@@ -56,4 +56,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes');
     }
+
+    /**
+     * Get all posts that are saved by this user.
+     */
+    public function savedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'saved_posts');
+    }
 }

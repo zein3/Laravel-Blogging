@@ -20,13 +20,23 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(5)
-            ->has(Post::factory()->count(3)->has(Comment::factory()->count(3))->has(Tag::factory()->count(2)))
+            ->has(Post::factory()
+                ->count(3)
+                ->has(Comment::factory()->count(3))
+                ->has(Tag::factory()->count(2)))
+            ->has(Post::factory()
+                ->count(3)
+                ->has(Comment::factory()->count(3))
+                ->has(Tag::factory()->count(2)), 'savedPosts')
             ->create();
 
         User::factory()
             ->count(5)
             ->noProfilePicture()
-            ->has(Post::factory()->count(1)->has(Comment::factory()->count(2))->has(Tag::factory()->count(1)))
+            ->has(Post::factory()
+                ->count(1)
+                ->has(Comment::factory()->count(2))
+                ->has(Tag::factory()->count(1)))
             ->create();
     }
 }

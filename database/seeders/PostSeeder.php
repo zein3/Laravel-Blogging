@@ -22,7 +22,8 @@ class PostSeeder extends Seeder
             ->count(2)
             ->for(User::factory(), 'author')
             ->has(Comment::factory()->count(5))
-            ->has(Tag::factory()->count(3), 'tags')
+            ->has(Tag::factory()->count(3))
+            ->has(User::factory()->count(4), 'likers')
             ->create();
     }
 }

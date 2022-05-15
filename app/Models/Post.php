@@ -34,4 +34,12 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class, 'post_tags');
     }
+
+    /**
+     * Get all users that like this post.
+     */
+    public function likers()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
 }

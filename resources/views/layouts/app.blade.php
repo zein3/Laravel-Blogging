@@ -28,10 +28,10 @@
             </div>
         </nav>
 
-        <div class="container-fluid min-vh-100">
+        <div class="container min-vh-100">
             <div class="row min-vh-100">
                 {{--Sidebar--}}
-                <div class="offcanvas-md offcanvas-start col-lg-2 min-vh-100" id="sidebar" tabindex="-1" data-toggle="collapse">
+                <div class="offcanvas-md offcanvas-start col-lg-3 min-vh-100 py-2" id="sidebar" tabindex="-1" data-toggle="collapse">
                     <div class="d-lg-none d-flex flex-row justify-content-end">
                         <a href="#sidebar" class="text-decoration-none text-black fw-bold display-1" data-bs-toggle="offcanvas">
                             <i class="bi bi-x"></i>
@@ -73,15 +73,18 @@
                 </div>
 
                 {{--Content--}}
-                <div class="col-lg-8 min-vh-100 bg-primary">
+                <div class="col-lg-9 min-vh-100">
                     @yield('content')
                 </div>
 
                 {{--Extra sidebar--}}
-                <div class="col-lg-2 d-none d-lg-block min-vh-100 bg-warning">
-                </div>
+                <!--<div class="col-lg-2 d-none d-lg-block min-vh-100">
+                    @yield('extra')
+                </div>-->
 
             </div>
+        </div>
+        <div class="container-fluid">
             {{--Footer--}}
             <div class="row bg-dark text-white">
                 <div class="d-flex flex-column align-items-center py-4">

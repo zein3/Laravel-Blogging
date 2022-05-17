@@ -77,11 +77,6 @@
                     @yield('content')
                 </div>
 
-                {{--Extra sidebar--}}
-                <!--<div class="col-lg-2 d-none d-lg-block min-vh-100">
-                    @yield('extra')
-                </div>-->
-
             </div>
         </div>
         <div class="container-fluid">

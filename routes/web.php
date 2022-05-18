@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
+/* Post Route */
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
@@ -24,3 +27,18 @@ Route::get('/post/edit/{post:slug}', [PostController::class, 'edit'])->name('pos
 Route::post('/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
 
 Route::post('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+
+/* Login Route */
+Route::get('/login', [LoginController::class, 'show'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login_attempt');
+
+
+
+/* Register Route */
+Route::get('/register', [RegisterController::class, 'show'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register_attempt');
+
+
+
+/* Email Verification Route */

@@ -38,15 +38,15 @@
                         </a>
                     </div>
 
-                    <div class="btn-group-vertical w-100">
+                    <div class="btn-group-vertical w-100" style="position: sticky; top: 1rem;">
                         <a href="{{ route('home') }}" class="btn btn-outline-primary">
                             <i class="bi bi-house"></i>
                             Home
                         </a>
-                        <a href="#" class="btn btn-outline-primary">
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary">
                             Log in
                         </a>
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('register') }}" class="btn btn-outline-primary">
                             Create account
                         </a>
                         @auth

@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="btn-group-vertical w-100">
-                        <a href="#" class="btn btn-outline-primary">
+                        <a href="{{ route('home') }}" class="btn btn-outline-primary">
                             <i class="bi bi-house"></i>
                             Home
                         </a>
@@ -79,7 +79,7 @@
 
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid mt-4">
             {{--Footer--}}
             <div class="row bg-dark text-white">
                 <div class="d-flex flex-column align-items-center py-4">

@@ -6,7 +6,6 @@
     @foreach ($posts as $post)
         <x-posts.card :post="$post" />
     @endforeach
-@endsection
 
-@section('extra')
+    {{ $posts->links() }}
 @endsection

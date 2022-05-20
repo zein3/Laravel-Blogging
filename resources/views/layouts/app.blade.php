@@ -38,19 +38,21 @@
                         </a>
                     </div>
 
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" style="position: sticky; top: 1rem;">
                         @csrf
                         <div class="btn-group-vertical w-100" style="position: sticky; top: 1rem;">
                             <a href="{{ route('home') }}" class="btn btn-outline-primary">
                                 <i class="bi bi-house"></i>
                                 Home
                             </a>
+                            @guest
                             <a href="{{ route('login') }}" class="btn btn-outline-primary">
                                 Log in
                             </a>
                             <a href="{{ route('register') }}" class="btn btn-outline-primary">
                                 Create account
                             </a>
+                            @endguest
                             @auth
                             <a href="#" class="btn btn-outline-primary">
                                 <i class="bi bi-bookmark"></i>

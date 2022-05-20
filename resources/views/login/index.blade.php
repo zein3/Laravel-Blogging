@@ -10,14 +10,19 @@
         </h5>
         <hr>
         <form method="POST" action="{{ route('login') }}">
-            <div class="mb-2">
-                <label for="email" class="form-label fs-4">Username or Email:</label>
-                <input type="text" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-2">
-                <label for="password" class="form-label fs-4">Password:</label>
-                <input type="password" class="form-control" id="password" name="password">
-                <a class="text-muted text-decoration-none fs-6 fw-light" href="#">Forgot your password?</a>
+            @csrf
+            <x-form.input type="text" id="email" name="email">
+                Username or Email:
+            </x-form.input>
+            <x-form.input type="password" id="password" name="password">
+                Password:
+            </x-form.input>
+            <a class="text-muted text-decoration-none fs-6 fw-light" href="#">Forgot your password?</a>
+
+            <div class="my-2">
+                <x-form.check id="remember_me" name="remember_me">
+                    Remember me
+                </x-form.check>
             </div>
 
             <div class="d-grid mt-4">

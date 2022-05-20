@@ -27,7 +27,23 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+        $remember = $request->has('remember_me');
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
 
+        if (Auth::attempt($credentials, $remember) || Auth::attempt([
+            'username' => $credentials['email'],
+            'password' => $credentials['password']
+        ], $remember)) {
+            $request->session()->regenerate();
+            return redirect(route('home'));
+        }
+
+        return back()->withErrors([
+            'email' => 'Wrong email or password'
+        ]);
     }
 
     /**

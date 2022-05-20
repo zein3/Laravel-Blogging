@@ -32,12 +32,13 @@ Route::post('/post/delete/{post}', [PostController::class, 'destroy'])->name('po
 /* Login Route */
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login_attempt');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 
 /* Register Route */
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
-Route::post('/register', [RegisterController::class, 'register'])->name('register_attempt');
+Route::post('/register', [RegisterController::class, 'store'])->name('register_attempt');
 
 
 

@@ -9,7 +9,7 @@
             Login
         </h5>
         <hr>
-        <form method="POST" action="route('login')">
+        <form method="POST" action="{{ route('login') }}">
             <div class="mb-2">
                 <label for="email" class="form-label fs-4">Username or Email:</label>
                 <input type="text" class="form-control" id="email" name="email">

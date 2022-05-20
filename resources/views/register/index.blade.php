@@ -9,19 +9,26 @@
             Register
         </h5>
         <hr>
-        <form method="POST" action="route('login')">
-            <div class="mb-2">
-                <label for="email" class="form-label fs-4">Username or Email:</label>
-                <input type="text" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-2">
-                <label for="password" class="form-label fs-4">Password:</label>
-                <input type="password" class="form-control" id="password" name="password">
-                <a class="text-muted text-decoration-none fs-6 fw-light" href="#">Forgot your password?</a>
-            </div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <x-form.input id="username" name="username" type="text">
+                Username:
+            </x-form.input>
+            <x-form.input id="full_name" name="full_name" type="text">
+                Name:
+            </x-form.input>
+            <x-form.input id="email" name="email" type="email">
+                Email:
+            </x-form.input>
+            <x-form.input id="password" name="password" type="password">
+                Password:
+            </x-form.input>
+            <x-form.input id="confirm_password" name="confirm_password" type="password">
+                Confirm Password:
+            </x-form.input>
 
             <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-block btn-primary">Login</button>
+                <button type="submit" class="btn btn-block btn-primary">Create Account</button>
             </div>
         </form>
     </div>

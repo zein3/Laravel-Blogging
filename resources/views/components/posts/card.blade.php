@@ -5,7 +5,7 @@
         <img class="card-img-top" src="{{ $post->thumbnail }}" style="max-height: 10rem;" />
         <div class="card-body">
             <h5 class="card-title display-6 fw-bold">
-                <a href="#" class="text-decoration-none text-black">
+                <a href="{{ route('post.show', ['post' => $post->slug]) }}" class="text-decoration-none text-black">
                     {{ $post->title }}
                 </a>
             </h5>

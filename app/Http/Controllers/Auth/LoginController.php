@@ -38,7 +38,7 @@ class LoginController extends Controller
             'password' => $credentials['password']
         ], $remember)) {
             $request->session()->regenerate();
-            return redirect(route('home'));
+            return redirect()->route('home');
         }
 
         return back()->withErrors([
@@ -57,6 +57,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect(route('home'));
+        return redirect()->route('home');
     }
 }

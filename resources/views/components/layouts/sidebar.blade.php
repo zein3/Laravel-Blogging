@@ -31,9 +31,6 @@
                                 My posts
                             </a>
                             <a href="#" class="btn btn-outline-primary">
-                                My comments
-                            </a>
-                            <a href="#" class="btn btn-outline-primary">
                                 <i class="bi bi-gear"></i>
                                 Settings
                             </a>

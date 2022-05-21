@@ -47,9 +47,9 @@
                             <h4 class="h4 fw-bold">
                                 Author:
                             </h4>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-start">
                                 <img src="{{ $post->author->profile_picture }}" class="rounded-circle" width="50" height="50" />
-                                <a href="#" class="text-decoration-none text-black fw-bold fs-3">{{ $post->author->full_name }}</a>
+                                <a href="#" class="text-decoration-none text-black fw-bold fs-3 ms-2">{{ $post->author->username }}</a>
                             </div>
                         </div>
                     </div>

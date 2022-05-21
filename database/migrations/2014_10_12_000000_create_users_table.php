@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email', 120)->unique();
             $table->string('full_name', 120);
             $table->text('password');
+            $table->text('bio')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('profile_picture', 2000)->nullable(); /* max url length = 2000 */
             $table->rememberToken();

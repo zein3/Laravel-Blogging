@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -38,7 +39,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /* Register Route */
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register_attempt');
+Route::post('/register', [UserController::class, 'store'])->name('register_attempt');
 
 
 

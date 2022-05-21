@@ -6,10 +6,10 @@
         72 likes
     </button>
 
-    <button class="btn btn-outline-primary me-1">
+    <a class="btn btn-outline-primary me-1" href="{{ route('post.show', ['post' => $post->slug]) . '#comment' }}">
         <i class="bi bi-chat-left"></i>
         6 comments
-    </button>
+    </a>
 
     <div class="flex-grow-1 d-flex flex-row align-items-center justify-content-end">
         <button class="btn btn-outline-success">

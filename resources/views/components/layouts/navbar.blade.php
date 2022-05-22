@@ -10,18 +10,18 @@
                         Blog
                     </a>
                     <div class="d-none d-lg-block">
-                        <div class="form-control py-0 px-0 d-flex flex-row align-items-center">
-                            <input class="border-0 flex-grow-1 p-1" placeholder="search...">
+                        <form action="{{ route('home') }}" method="GET" class="form-control py-0 px-0 d-flex flex-row align-items-center">
+                            <input name="search" class="border-0 flex-grow-1 p-1" placeholder="search...">
                             <button class="btn btn-outline-primary">
                                 <i class="bi bi-search"></i>
                             </button>
-                        </div>
+                        </form>
                     </div>
                     
                     @auth
                     <div class="dropstart">
                         <a class="m-1" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img class="rounded-circle" src="https://i.pravatar.cc/50?img=3" width="50" height="50" />
+                            <img class="rounded-circle" src="https://i.pravatar.cc/50?img=68" width="50" height="50" />
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">

@@ -42,4 +42,32 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'likes');
     }
+
+    /**
+     * Filter posts.
+     * filters['search'] is used to filter posts based on title and content/body.
+     * filters['tag'] is used to filter posts based on tags.
+     * filters['author'] is used to filter posts based on author.
+     */
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            $query->where(fn($query) =>
+                $query->where('title', 'like', '%' . $search . '%')
+                      ->orWhere('body', 'like', '%' . $search . '%')
+            );
+        });
+
+        $query->when($filters['tag'] ?? false, function($query, $tag) {
+            $query->whereHas('tags', function($query) use($tag) {
+                $query->where('name', $tag);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function($query, $author) {
+            $query->whereHas('author', function($query) use($author) {
+                $query->where('username', $author);
+            });
+        });
+    }
 }

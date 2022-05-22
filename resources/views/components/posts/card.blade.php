@@ -11,11 +11,10 @@
             </h5>
             <h6 class="card-subtitle text-muted">
                 by 
-                <a href="#" class="text-decoration-none text-muted">
+                <a href="{{ route('home', ['author' => $post->author->username]) }}" class="text-decoration-none text-muted">
                     {{ $post->author->username }}
                 </a>
             </h6>
-            <!-- TODO: show tags here -->
             <x-posts.card_tags :post="$post" />
             <x-posts.card_bottom :post="$post" />
         </div>

@@ -16,7 +16,11 @@ class PostController extends Controller
     public function index(Request $request)
     {
         return view('post.index', [
-            'posts' => Post::paginate(15)
+            'posts' => Post::filter([
+                'search' => $request->input('search'),
+                'tag' => $request->input('tag'),
+                'author' => $request->input('author')
+            ])->paginate(15)
         ]);
     }
 

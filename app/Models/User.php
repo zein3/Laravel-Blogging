@@ -82,4 +82,19 @@ class User extends Authenticatable
 
         return ($result->count() == 1) ? true : false;
     }
+
+    /**
+     * Check whether the user has saved a post or not.
+     *
+     * @param int $post_id
+     * @return bool
+     */
+    public function postSaved(int $post_id)
+    {
+        $result = User::where('id', Auth::id())
+                  ->whereHas('savedPosts', function ($query) use ($post_id) {
+                    $query->where('id', $post_id);
+        });
+        return ($result->count() == 1) ? true : false;
+    }
 }

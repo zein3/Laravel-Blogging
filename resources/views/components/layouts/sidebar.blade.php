@@ -22,7 +22,7 @@
                             </a>
                             @endguest
                             @auth
-                            <a href="#" class="btn btn-outline-primary">
+                            <a href="{{ route('saved_post.index') }}" class="btn btn-outline-primary">
                                 <i class="bi bi-bookmark"></i>
                                 Saved posts
                             </a>

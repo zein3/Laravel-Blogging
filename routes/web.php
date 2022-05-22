@@ -50,9 +50,9 @@ Route::delete('/comment/{comment:id}', [CommentController::class, 'destroy'])->n
 
 
 /* Saved Post Route */
-Route::get('/saved', [SavedPostController::class, 'show'])->name('saved_post.show')->middleware('auth');
-Route::post('/saved', [SavedPostController::class, 'store'])->name('saved_post.store')->middleware('auth');
-Route::delete('/saved/{saved_posts}', [SavedPostController::class, 'destroy'])->name('saved_post.destroy')->middleware('auth');
+Route::get('/saved', [SavedPostController::class, 'index'])->name('saved_post.index')->middleware('auth');
+Route::post('/saved/{post:id}', [SavedPostController::class, 'store'])->name('saved_post.store')->middleware('auth');
+Route::delete('/saved/{post:id}', [SavedPostController::class, 'destroy'])->name('saved_post.destroy')->middleware('auth');
 
 
 

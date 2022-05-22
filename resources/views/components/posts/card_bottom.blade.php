@@ -13,7 +13,7 @@
     @endguest
     @auth
     @if(Auth::user()->likes($post->id))
-    <form method="POST" action="{{ route('like.destroy', ['post' => $post->id]) }}">
+    <form method="POST" action="{{ route('like.destroy', ['post' => $post]) }}">
         @method('DELETE')
         @csrf
         <button class="btn btn-primary me-1" type="submit">
@@ -22,7 +22,7 @@
         </button>
     </form>
     @else
-    <form method="POST" action="{{ route('like.store', ['post' => $post->id]) }}">
+    <form method="POST" action="{{ route('like.store', ['post' => $post]) }}">
         @csrf
         <button class="btn btn-outline-primary me-1" type="submit">
             <i class="bi bi-hand-thumbs-up"></i>
@@ -36,11 +36,23 @@
         6 comments
     </a>
 
-    <div class="flex-grow-1 d-flex flex-row align-items-center justify-content-end">
-        <button class="btn btn-outline-success">
+    @if(Auth::user()->postSaved($post->id))
+    <form method="POST" action="{{ route('saved_post.destroy', ['post' => $post]) }}" class="flex-grow-1 d-flex flex-row align-items-center justify-content-end">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-bookmark-fill"></i>
+            Saved
+        </button>
+    </form>
+    @else
+    <form method="POST" action="{{ route('saved_post.store', ['post' => $post]) }}" class="flex-grow-1 d-flex flex-row align-items-center justify-content-end">
+        @csrf
+        <button type="submit" class="btn btn-outline-success">
             <i class="bi bi-bookmark"></i>
             Save
         </button>
-    </div>
+    </form>
+    @endif
     @endauth
 </div>

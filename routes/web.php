@@ -3,19 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SavedPostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 /* Post Route */
 Route::get('/', [PostController::class, 'index'])->name('home');
@@ -40,6 +33,26 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 /* Register Route */
 Route::get('/register', [RegisterController::class, 'show'])->name('register')->middleware('guest');
 Route::post('/register', [UserController::class, 'store'])->name('register_attempt')->middleware('guest');
+
+
+
+/* Posts' Likes Route */
+Route::post('/like/{post:id}', [LikeController::class, 'store'])->name('like.store')->middleware('auth');
+Route::delete('/like/{post:id}', [LikeController::class, 'destroy'])->name('like.destroy')->middleware('auth');
+
+
+
+/* Comment Route */
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
+Route::patch('/comment/{comment:id}', [CommentController::class, 'update'])->name('comment.update')->middleware('auth');
+Route::delete('/comment/{comment:id}', [CommentController::class, 'destroy'])->name('comment.destroy')->middleware('auth');
+
+
+
+/* Saved Post Route */
+Route::get('/saved', [SavedPostController::class, 'show'])->name('saved_post.show')->middleware('auth');
+Route::post('/saved', [SavedPostController::class, 'store'])->name('saved_post.store')->middleware('auth');
+Route::delete('/saved/{saved_posts}', [SavedPostController::class, 'destroy'])->name('saved_post.destroy')->middleware('auth');
 
 
 

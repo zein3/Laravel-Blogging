@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -64,5 +65,21 @@ class User extends Authenticatable
     public function savedPosts()
     {
         return $this->belongsToMany(Post::class, 'saved_posts');
+    }
+
+    /**
+     * Check whether the user likes a post or not.
+     *
+     * @param int $post_id
+     * @return bool
+     */
+    public function likes(int $post_id)
+    {
+        $result = User::where('id', Auth::id())
+                  ->whereHas('likedPosts', function ($query) use ($post_id) {
+                      $query->where('id', $post_id);
+        })->get();
+
+        return ($result->count() == 1) ? true : false;
     }
 }

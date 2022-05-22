@@ -12,10 +12,24 @@
     </div>
     @endguest
     @auth
-    <button class="btn btn-outline-primary me-1">
-        <i class="bi bi-hand-thumbs-up"></i>
-        72 likes
-    </button>
+    @if(Auth::user()->likes($post->id))
+    <form method="POST" action="{{ route('like.destroy', ['post' => $post->id]) }}">
+        @method('DELETE')
+        @csrf
+        <button class="btn btn-primary me-1" type="submit">
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            {{ $post->likers->count() }} likes
+        </button>
+    </form>
+    @else
+    <form method="POST" action="{{ route('like.store', ['post' => $post->id]) }}">
+        @csrf
+        <button class="btn btn-outline-primary me-1" type="submit">
+            <i class="bi bi-hand-thumbs-up"></i>
+            {{ $post->likers->count() }} likes
+        </button>
+    </form>
+    @endif
 
     <a class="btn btn-outline-primary me-1" href="{{ route('post.show', ['post' => $post->slug]) . '#comment' }}">
         <i class="bi bi-chat-left"></i>

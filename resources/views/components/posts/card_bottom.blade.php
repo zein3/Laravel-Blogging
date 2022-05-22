@@ -1,6 +1,17 @@
 @props(['post'])
 
 <div class="d-flex flex-row align-items-center justify-content-start py-2">
+    @guest
+    <div class="me-2">
+        <i class="bi bi-hand-thumbs-up"></i>
+        72 likes
+    </div>
+    <div class="me-2">
+        <i class="bi bi-chat-left"></i>
+        6 comments
+    </div>
+    @endguest
+    @auth
     <button class="btn btn-outline-primary me-1">
         <i class="bi bi-hand-thumbs-up"></i>
         72 likes
@@ -17,4 +28,5 @@
             Save
         </button>
     </div>
+    @endauth
 </div>

@@ -30,6 +30,10 @@
                                 <i class="bi bi-book"></i>
                                 My posts
                             </a>
+                            <a href="{{ route('post.create') }}" class="btn btn-outline-primary">
+                                <i class="bi bi-pen"></i>
+                                Create post
+                            </a>
                             <a href="#" class="btn btn-outline-primary">
                                 <i class="bi bi-gear"></i>
                                 Settings

@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -41,9 +41,9 @@ class PostController extends Controller
      * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**

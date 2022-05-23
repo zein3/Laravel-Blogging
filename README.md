@@ -27,16 +27,19 @@ php artisan key:generate --ansi
 
 5. Configure database
 
-6. Configure mail driver
+6. Run Laravel Mix
+```sh
+npm install && npm run dev
+```
 
-7. Migrate database
+7. Configure mail driver
+
+8. Migrate database
 ```sh
 php artisan migrate
 ```
 
-8. Start development server
+9. Start development server
 ```sh
 php artisan serve
 ```
-
-9. Run tests

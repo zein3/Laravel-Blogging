@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Post;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +50,25 @@ class PostController extends Controller
             'thumbnail' => ['required', 'file', 'mimes:jpeg,bmp,png', 'max:2048'],
             'body' => ['required']
         ]);
-        dd($newPost);
+
+        // THUMBNAIL_FOLDER environment variable is used to determine which folder on CDN provider should we store the thumbnail.
+        $thumbnailUpload = $newPost['thumbnail']->store(env('THUMBNAIL_FOLDER'));
+
+        if ($thumbnailUpload) {
+            // successful upload
+            Post::create([
+                'author_id' => $request->user()->id,
+                'title' => $newPost['title'],
+                'slug' => Str::of($newPost['title'])->slug('-'),
+                'thumbnail' => $thumbnailUpload,
+                'body' => $newPost['body']
+            ]);
+
+            return redirect()->back();
+        } else {
+            // fail to upload thumbnail
+            abort(500);
+        }
     }
 
     /**

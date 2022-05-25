@@ -4,12 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\Comment;
 use App\Models\Tag;
 
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'author_id',
+        'title',
+        'slug',
+        'thumbnail',
+        'body'
+    ];
+
+    /**
+     * Get image URL for the thumbnail.
+     */
+    public function getThumbnailUrl()
+    {
+        // THUMBNAIL_URL environment variable is used to store the base url of image cdn service.
+        if (Str::startsWith($this->thumbnail, env('THUMBNAIL_FOLDER'))) {
+            return env('THUMBNAIL_URL') . $this->thumbnail;
+        } else {
+            return $this->thumbnail;
+        }
+    }
 
     /**
      * Get all comments on a post.

@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-8">
                 <div class="card shadow">
-                    <img src="{{ $post->thumbnail }}" class="card-img-top" style="max-height: 10rem;" />
+                    <img src="{{ $post->getThumbnailUrl() }}" class="card-img-top" style="max-height: 10rem;" />
                     <div class="card-body">
                         <h4 class="h5 fw-bold text-center">
                             {{ $post->title }}

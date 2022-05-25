@@ -25,21 +25,33 @@ cp .env.example .env
 php artisan key:generate --ansi
 ```
 
-5. Configure database
+5. Configure database. Example config:
+```
+DB_DATABASE=Laravel
+DB_USERNAME=root
+DB_PASSWORD=root
+```
 
 6. Run Laravel Mix
 ```sh
 npm install && npm run dev
 ```
 
-7. Configure mail driver
+7. Configure storage driver. Example config:
+```
+FTP_HOST=ftp.sirv.com
+FTP_USERNAME=example@gmail.com
+FTP_PASSWORD=example123
+```
 
-8. Migrate database
+8. Configure mail driver
+
+9. Migrate database
 ```sh
 php artisan migrate
 ```
 
-9. Start development server
+10. Start development server
 ```sh
 php artisan serve
 ```

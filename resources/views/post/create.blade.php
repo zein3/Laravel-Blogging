@@ -5,7 +5,7 @@
 @section('content')
 <h3 class="fw-bold text-center h3 my-2">Create Post</h5>
 
-<form action="{{ route('post.store') }}" method="POST" id="post_form">
+<form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" id="post_form">
     @csrf
     <div class="card mt-2 shadow">
         <div class="card-body">
@@ -16,9 +16,9 @@
     </div>
     <div class="card mt-2 shadow">
         <div class="card-body">
-            <x-form.input id="thumbnail" name="thumbnail" type="file">
+            <x-form.image id="thumbnail" name="thumbnail" type="file">
                 Thumbnail:
-            </x-form.input>
+            </x-form.image>
             <span class="fs-6 fw-light">Max size: 2MB</span>
         </div>
     </div>

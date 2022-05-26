@@ -30,24 +30,22 @@
                     Comments
                 </h5>
                 @foreach($post->comments as $comment)
-                <div class="card shadow my-2">
-                    <div class="card-body">
-                        <div class="d-flex flex-row align-items-end">
-                            <img src="{{ $comment->commenter->profile_picture }}" class="rounded-circle" width="25" height="25" />
-                            <a href="#" class="mx-1 text-decoration-none text-black fw-bold">
-                                {{ $comment->commenter->username }}
-                            </a>
-                        </div>
-                        <span>
-                            {{ $comment->body }}
-                        </span>
-                    </div>
-                </div>
+                <x-comment :comment="$comment" />
                 @endforeach
                 @auth
                 <div class="card shadow my-2" id="comment">
                     <div class="card-body">
-                        Comment here!
+                        <form action="{{ route('comment.store', ['post' => $post]) }}" method="POST">
+                            @csrf
+                            <x-form.textarea name="body" id="body">
+                                Your comment:
+                            </x-form.textarea>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    Post comment
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 @endauth

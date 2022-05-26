@@ -4,11 +4,11 @@
     @guest
     <div class="me-2">
         <i class="bi bi-hand-thumbs-up"></i>
-        72 likes
+        {{ $post->likers->count() }} likes
     </div>
     <div class="me-2">
         <i class="bi bi-chat-left"></i>
-        6 comments
+        {{ $post->comments->count() }} comments
     </div>
     @endguest
     @auth

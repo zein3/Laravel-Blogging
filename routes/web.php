@@ -43,7 +43,7 @@ Route::delete('/like/{post:id}', [LikeController::class, 'destroy'])->name('like
 
 
 /* Comment Route */
-Route::post('/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
+Route::post('/comment/post/{post:id}', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 Route::patch('/comment/{comment:id}', [CommentController::class, 'update'])->name('comment.update')->middleware('auth');
 Route::delete('/comment/{comment:id}', [CommentController::class, 'destroy'])->name('comment.destroy')->middleware('auth');
 

@@ -2,50 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Post a comment.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
-    }
+        $validatedComment = $request->validate([
+            'body' => ['required', 'max:120']
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Comment::create([
+            'commenter_id' => $request->user()->id,
+            'post_id' => $post->id,
+            'body' => $validatedComment['body']
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -72,13 +53,16 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a comment.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Comment $comment)
     {
-        //
+        if ($request->user()->id == $comment->commenter->id) {
+            $comment->delete();
+        }
+        return redirect()->back();
     }
 }

@@ -1,7 +1,6 @@
 ## About
 
-This is a [Dev.to](https://dev.to/) clone made with Laravel.
-
+Blogging platform website made with Laravel.
 
 ## Running The Server and Testing
 

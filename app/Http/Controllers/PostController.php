@@ -22,7 +22,7 @@ class PostController extends Controller
                 'search' => $request->input('search'),
                 'tag' => $request->input('tag'),
                 'author' => $request->input('author')
-            ])->paginate(15)
+            ])->orderBy('created_at', 'desc')->paginate(15)
         ]);
     }
 

@@ -26,7 +26,7 @@
                                 <i class="bi bi-bookmark"></i>
                                 Saved posts
                             </a>
-                            <a href="#" class="btn btn-outline-primary">
+                            <a href="{{ route('home', ['author' => Auth::user()->username]) }}" class="btn btn-outline-primary">
                                 <i class="bi bi-book"></i>
                                 My posts
                             </a>

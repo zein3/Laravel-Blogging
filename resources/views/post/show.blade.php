@@ -17,8 +17,8 @@
                         <h4 class="h5 fw-bold text-center">
                             {{ $post->title }}
                         </h4>
-                        <div id="viewer">
-                            {{ $post->body }}
+                        <div id="post_body">
+                            {{ $post->htmlContent() }}
                         </div>
                     </div>
                     <div class="px-2">
@@ -82,15 +82,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        import Viewer from '@toast-ui/viewer';
-
-        const viewer = new Viewer({
-                    el: document.querySelector('#viewer'),
-                    initialValue: "{{ $post->body }}"
-                });
-    </script>
 
 <x-layouts.footer />
 @endsection

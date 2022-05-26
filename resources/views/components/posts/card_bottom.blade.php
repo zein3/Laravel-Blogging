@@ -33,7 +33,7 @@
 
     <a class="btn btn-outline-primary me-1" href="{{ route('post.show', ['post' => $post->slug]) . '#comment' }}">
         <i class="bi bi-chat-left"></i>
-        6 comments
+        {{ $post->comments->count() }} comments
     </a>
 
     @if(Auth::user()->postSaved($post->id))

@@ -34,6 +34,14 @@ class Post extends Model
     }
 
     /**
+     * Get post's body to render it in HTML.
+     */
+    public function htmlContent()
+    {
+        return Str::of($this->body)->toHtmlString();
+    }
+
+    /**
      * Get all comments on a post.
      */
     public function comments()

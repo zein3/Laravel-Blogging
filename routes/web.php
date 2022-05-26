@@ -44,7 +44,6 @@ Route::delete('/like/{post:id}', [LikeController::class, 'destroy'])->name('like
 
 /* Comment Route */
 Route::post('/comment/post/{post:id}', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
-Route::patch('/comment/{comment:id}', [CommentController::class, 'update'])->name('comment.update')->middleware('auth');
 Route::delete('/comment/{comment:id}', [CommentController::class, 'destroy'])->name('comment.destroy')->middleware('auth');
 
 
@@ -53,6 +52,13 @@ Route::delete('/comment/{comment:id}', [CommentController::class, 'destroy'])->n
 Route::get('/saved', [SavedPostController::class, 'index'])->name('saved_post.index')->middleware('auth');
 Route::post('/saved/{post:id}', [SavedPostController::class, 'store'])->name('saved_post.store')->middleware('auth');
 Route::delete('/saved/{post:id}', [SavedPostController::class, 'destroy'])->name('saved_post.destroy')->middleware('auth');
+
+
+
+/* User Route */
+Route::get('/user/{user:id}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
+Route::patch('/user/{user:id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
+Route::delete('/user/{user:id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
 
 
 

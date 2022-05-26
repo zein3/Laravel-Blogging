@@ -34,7 +34,7 @@
                                 <i class="bi bi-pen"></i>
                                 Create post
                             </a>
-                            <a href="#" class="btn btn-outline-primary">
+                            <a href="{{ route('user.edit', ['user' => Auth::user()]) }}" class="btn btn-outline-primary">
                                 <i class="bi bi-gear"></i>
                                 Settings
                             </a>

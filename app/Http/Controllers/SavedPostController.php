@@ -17,7 +17,7 @@ class SavedPostController extends Controller
     public function index(Request $request)
     {
         return view('post.index', [
-            'posts' => $request->user()->savedPosts()->paginate(15)
+            'posts' => $request->user()->savedPosts()->orderBy('created_at', 'desc')->paginate(15)
         ]);
     }
 

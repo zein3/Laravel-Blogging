@@ -25,8 +25,13 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li class="text-center fs-5 fw-bold">
+                                <span>
+                                    {{ Auth::user()->username }}
+                                </span>
+                            </li>
                             <li>
-                                <a href="#" class="dropdown-item">
+                                <a href="{{ route('user.edit', ['user' => Auth::user()]) }}" class="dropdown-item">
                                     My Profile
                                 </a>
                             </li>

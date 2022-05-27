@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -85,7 +87,40 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update specified user's profile picture
+     *
+     * @param \Illuminate\Http|Request  $request
+     * @param \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfilePicture(Request $request, User $user)
+    {
+        if ($request->user()->id == $user->id) {
+            $validated = $request->validate([
+                'profile_picture' => ['required', 'file', 'mimes:jpeg,png,bmp', 'max:512'],
+            ]);
+
+            // if user's current profile picture is an uploaded profile picture, delete it from storage
+            if (Str::of($user->profile_picture)->startsWith(env('THUMBNAIL_FOLDER'))) {
+                Storage::delete($user->profile_picture);
+            }
+
+            $newProfilePicture = $validated['profile_picture']->store(env('THUMBNAIL_FOLDER'));
+
+            if ($newProfilePicture) {
+                $user->profile_picture = $newProfilePicture;
+                $user->save();
+                return redirect()->back();
+            } else {
+                abort(500);
+            }
+        } else {
+            abort(403);
+        }
+    }
+
+    /**
+     * Update general user information (excluding profile picture and password).
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User  $user

@@ -7,8 +7,8 @@
 <div class="card mt-3 p-2 shadow">
     <h5 class="fw-bold h4 text-center">Change profile picture</h5>
     <div class="card-body row">
-        <div class="col-lg-3">
-            <img src="{{ $user->getProfilePictureUrl() }}" class="img-fluid rounded-circle" />
+        <div class="col-lg-3 d-flex flex-row justify-content-center align-items-center">
+            <img src="{{ $user->getProfilePictureUrl() }}" class="rounded-circle" width="150" height="150" />
         </div>
         <div class="col-lg-9 d-flex flex-column justify-content-center">
             <div class="d-grid my-2">
@@ -38,7 +38,8 @@
             <div class="d-flex flex-row justify-content-center mt-2">
                 <img src="" id="preview_profile_picture" class="rounded-circle d-none" width="100" height="100">
             </div>
-            <form class="modal-body">
+            <form class="modal-body" method="POST" action="{{ route('user.update.profile.picture', ['user' => $user]) }}" enctype="multipart/form-data">
+                @csrf
                 <x-form.image id="profile_picture" name="profile_picture" type="file">
                     Upload new profile picture:
                 </x-form.image>

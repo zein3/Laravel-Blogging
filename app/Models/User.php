@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -44,10 +45,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getProfilePictureUrl()
+    {
+        if (Str::of($this->profile_picture)->startsWith(env('THUMBNAIL_FOLDER'))) {
+            return env('THUMBNAIL_URL') . $this->profile_picture;
+        } else {
+            return $this->profile_picture;
+        }
+    }
+
     /**
      * Get all posts the user wrote.
      */
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class, 'author_id');
     }
 

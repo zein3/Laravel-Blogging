@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('password');
             $table->text('bio')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('profile_picture', 2000)->nullable(); /* max url length = 2000 */
+            $table->string('profile_picture', 2000)->default(env('DEFAULT_PROFILE_PICTURE')); /* max url length = 2000 */
             $table->rememberToken();
             $table->timestamps();
         });

@@ -32,7 +32,6 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->count(5)
-            ->noProfilePicture()
             ->has(Post::factory()
                 ->count(1)
                 ->has(Comment::factory()->count(2))

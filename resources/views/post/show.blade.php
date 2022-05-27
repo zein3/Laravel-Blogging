@@ -59,7 +59,7 @@
                                 Author:
                             </h4>
                             <div class="d-flex align-items-center justify-content-start">
-                                <img src="{{ $post->author->profile_picture }}" class="rounded-circle" width="50" height="50" />
+                                <img src="{{ $post->author->getProfilePictureUrl() }}" class="rounded-circle" width="50" height="50" />
                                 <a href="#" class="text-decoration-none text-black fw-bold fs-3 ms-2">{{ $post->author->username }}</a>
                             </div>
                             <hr />

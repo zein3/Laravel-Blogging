@@ -5,7 +5,7 @@
 <div class="card shadow my-2">
     <div class="card-body">
         <div class="d-flex flex-row align-items-end">
-            <img src="{{ $comment->commenter->profile_picture }}" class="rounded-circle" width="25" height="25" />
+            <img src="{{ $comment->commenter->getProfilePictureUrl() }}" class="rounded-circle" width="25" height="25" />
             <a href="#" class="mx-1 text-decoration-none text-black fw-bold">
                 {{ $comment->commenter->username }}
             </a>

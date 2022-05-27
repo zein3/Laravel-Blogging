@@ -21,7 +21,7 @@
                     @auth
                     <div class="dropstart">
                         <a class="m-1" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown">
-                            <img class="rounded-circle" src="https://i.pravatar.cc/50?img=68" width="50" height="50" />
+                            <img class="rounded-circle" src="{{ Auth::user()->getProfilePictureUrl() }}" width="50" height="50" />
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">

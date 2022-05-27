@@ -18,9 +18,9 @@
             </div>
             @if($user->getProfilePictureUrl() != env('DEFAULT_PROFILE_PICTURE'))
             <div class="d-grid my-2">
-                <a href="#" class="btn btn-outline-danger">
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#destroy_profile_picture">
                     Delete profile picture
-                </a>
+                </button>
             </div>
             @endif
         </div>
@@ -52,8 +52,27 @@
 </div>
 
 <!-- Delete Profile Picture Modal -->
-<div class="modal fade" id="deleteProfilePicture" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-
+<div class="modal fade" id="destroy_profile_picture" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete your profile picture</h5>
+            </div>
+            <div class="modal-body">
+                <h6 class="fw-bold fs-4">Are you sure?</h6>
+                <form method="POST" action="{{ route('user.destroy.profile.picture', ['user' => $user]) }}" class="d-flex flex-row">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-outline-primary flex-grow-1 mx-2" data-bs-dismiss="modal">
+                        No
+                    </button>
+                    <button type="submit" class="btn btn-outline-danger flex-grow-1 mx-2">
+                        Yes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="card mt-3 p-2 shadow">

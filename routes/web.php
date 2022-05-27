@@ -61,6 +61,7 @@ Route::post('/profile_picture/{user:id}', [UserController::class, 'updateProfile
 Route::post('/change_password/{user:id}', [UserController::class, 'updatePassword'])->name('user.update.password')->middleware('auth');
 Route::patch('/user/{user:id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 Route::delete('/user/{user:id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
+Route::delete('/profile_picture/{user:id}', [UserController::class, 'destroyProfilePicture'])->name('user.destroy.profile.picture')->middleware('auth');
 
 
 

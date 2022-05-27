@@ -136,6 +136,30 @@ class UserController extends Controller
     }
 
     /**
+     * Remove the specified user's profile picture.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @param \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyProfilePicture(Request $request, User $user)
+    {
+        if ($request->user()->id == $user->id) {
+            // if user's current profile picture is an uploaded profile picture, delete it from storage
+            if (Str::of($user->profile_picture)->startsWith(env('THUMBNAIL_FOLDER'))) {
+                Storage::delete($user->profile_picture);
+            }
+
+            $user->profile_picture = env('DEFAULT_PROFILE_PICTURE');
+            $user->save();
+
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request

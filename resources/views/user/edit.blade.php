@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-9 d-flex flex-column justify-content-center">
             <div class="d-grid my-2">
-                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changeProfilePicture">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#change_profile_picture">
                     Change profile picture
                 </button>
             </div>
@@ -28,15 +28,23 @@
 </div>
 
 <!-- Change Profile Picture Modal -->
-<div class="modal fade" id="changeProfilePicture" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="change_profile_picture" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Change Profile Picture</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="d-flex flex-row justify-content-center mt-2">
+                <img src="" id="preview_profile_picture" class="rounded-circle d-none" width="100" height="100">
+            </div>
             <form class="modal-body">
-
+                <x-form.image id="profile_picture" name="profile_picture" type="file">
+                    Upload new profile picture:
+                </x-form.image>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Update profile picture</button>
+                </div>
             </form>
         </div>
     </div>
@@ -101,4 +109,6 @@
         </form>
     </div>
 </div>
+
+<script src="/js/preview.js"></script>
 @endsection

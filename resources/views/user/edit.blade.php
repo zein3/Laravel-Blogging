@@ -104,7 +104,7 @@
 <div class="card mt-3 p-2 shadow">
     <h5 class="fw-bold h4 text-center">Change Password</h5>
     <div class="card-body">
-        <form>
+        <form action="{{ route('user.update.password', ['user' => $user]) }}" method="POST">
             @csrf
             <x-form.input type="password" name="current_password" id="current_password">
                 Current Password:

@@ -119,6 +119,24 @@ class UserController extends Controller
         }
     }
 
+    public function updatePassword(Request $request, User $user)
+    {
+        if ($request->user()->id == $user->id) {
+            $validated = $request->validate([
+                'current_password' => ['required', 'current_password'],
+                'new_password' => ['required'],
+                'confirm_password' => ['required', 'same:new_password']
+            ]);
+
+            $user->password = Hash::make($validated['new_password']);
+            $user->save();
+
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
+    }
+
     /**
      * Update general user information (excluding profile picture and password).
      *

@@ -89,11 +89,6 @@
                 Full name:
             </x-form.input>
 
-            <x-form.input value="{{ $user->email }}" type="email" name="email" id="email">
-                Email:
-            </x-form.input>
-            <!-- show whether email is verified or not here, if not also show a link to verify email -->
-
             <x-form.textarea value="{{ $user->bio }}" type="text" name="bio" id="bio">
                 Bio:
             </x-form.textarea>

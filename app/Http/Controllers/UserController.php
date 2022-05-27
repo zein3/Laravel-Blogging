@@ -129,7 +129,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         if ($request->user()->id == $user->id) {
+            $validated = $request->validate([
+                'username' => ['required', 'max:120'],
+                'full_name' => ['required', 'max:120'],
+                'bio' => []
+            ]);
 
+            $user->username = $validated['username'];
+            $user->full_name = $validated['full_name'];
+            $user->bio = $validated['bio'];
+            $user->save();
+            return redirect()->back();
         } else {
             abort(403);
         }

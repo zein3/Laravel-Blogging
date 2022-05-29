@@ -3,7 +3,6 @@
 @section('title', 'My Profile')
 
 @section('content')
-<!-- TODO: Change Profile Picture -->
 <div class="card mt-3 p-2 shadow">
     <h5 class="fw-bold h4 text-center">Change profile picture</h5>
     <div class="card-body row">
@@ -76,6 +75,26 @@
 </div>
 
 <div class="card mt-3 p-2 shadow">
+    <h5 class="fw-bold h4 text-center">Email Address</h5>
+    <div class="card-body">
+        <input class="form-control" type="email" value="{{ $user->email }}" disabled readonly />
+        @if($user->hasVerifiedEmail())
+        <span>Your email is verified.</span>
+        @else
+        <form action="{{ route('verification.send') }}" method="POST">
+            @csrf
+            <span class="fs-6 fw-light">
+                You have not verified your email.
+                <button type="submit" class="border-0 bg-white fs-6 text-primary">
+                    Verify your email now.
+                </button>
+            </span>
+        </form>
+        @endif
+    </div>
+</div>
+
+<div class="card mt-3 p-2 shadow">
     <h5 class="fw-bold h4 text-center">Edit Profile</h5>
     <div class="card-body">
         <form action="{{ route('user.update', ['user' => $user]) }}" method="POST">
@@ -100,7 +119,6 @@
     </div>
 </div>
 
-<!-- TODO: Change Password Form -->
 <div class="card mt-3 p-2 shadow">
     <h5 class="fw-bold h4 text-center">Change Password</h5>
     <div class="card-body">

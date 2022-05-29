@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SavedPostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 
 /* Post Route */
@@ -66,3 +67,6 @@ Route::delete('/profile_picture/{user:id}', [UserController::class, 'destroyProf
 
 
 /* Email Verification Route */
+Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->name('verification.notice')->middleware('auth');
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])->name('verification.send')->middleware('auth');

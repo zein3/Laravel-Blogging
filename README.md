@@ -43,7 +43,17 @@ FTP_USERNAME=example@gmail.com
 FTP_PASSWORD=example123
 ```
 
-8. Configure mail driver
+8. Configure mail driver. Example config:
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
 9. Migrate database
 ```sh

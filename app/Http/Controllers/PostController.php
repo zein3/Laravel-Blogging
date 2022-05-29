@@ -29,10 +29,15 @@ class PostController extends Controller
     /**
      * Show the form for creating a new post.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->user()->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
         return view('post.create');
     }
 
@@ -45,6 +50,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if (!$request->user()->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
         $newPost = $request->validate([
             'title' => ['required', 'max:120'],
             'thumbnail' => ['required', 'file', 'mimes:jpeg,bmp,png', 'max:2048'],

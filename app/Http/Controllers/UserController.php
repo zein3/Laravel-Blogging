@@ -54,6 +54,7 @@ class UserController extends Controller
         ]);
 
         Auth::login($user);
+        $user->sendEmailVerificationNotification();
         return redirect()->route('home');
     }
 
@@ -131,7 +132,7 @@ class UserController extends Controller
             $user->password = Hash::make($validated['new_password']);
             $user->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Password changed');
         } else {
             abort(403);
         }

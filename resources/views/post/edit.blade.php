@@ -6,7 +6,7 @@
 <div class="card mt-3 p-2 shadow">
     <h4 class="fw-bold text-center">Change Thumbnail</h4>
     <div class="card-body">
-        <form action="" method="POST">
+        <form action="{{ route('post.update_thumbnail', ['post' => $post]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <x-form.image id="thumbnail" name="thumbnail" type="file">
@@ -25,7 +25,7 @@
 <div class="card mt-3 p-2 shadow">
     <h4 class="fw-bold text-center">Edit Content</h4>
     <div class="card-body">
-        <form action="" method="POST" id="post_form">
+        <form action="{{ route('post.update', ['post' => $post]) }}" method="POST" id="post_form">
             @csrf
             @method('PATCH')
             <x-form.input value="{{ $post->title }}" type="text" name="title" id="title">
@@ -33,7 +33,7 @@
             </x-form.input>
             <div class="mt-2 shadow" id="editor"></div>
             <input class="d-none" id="editor_result" name="body" value="{{ old('body') ?? $post->body }}" />
-            <div class="d-grid">
+            <div class="d-grid mt-2">
                 <button id="post_submit" type="submit" class="btn btn-primary">
                     Edit Content
                 </button>

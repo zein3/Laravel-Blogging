@@ -16,13 +16,14 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::get('/post', [PostController::class, 'create'])->name('post.create');
-Route::post('/post', [PostController::class, 'store'])->name('post.store');
+Route::get('/post', [PostController::class, 'create'])->name('post.create')->middleware('auth');
+Route::post('/post', [PostController::class, 'store'])->name('post.store')->middleware('auth');
 
-Route::get('/post/edit/{post:slug}', [PostController::class, 'edit'])->name('post.edit');
-Route::post('/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
+Route::get('/post/edit/{post:slug}', [PostController::class, 'edit'])->name('post.edit')->middleware('auth');
+Route::patch('/post/edit/{post:id}', [PostController::class, 'update'])->name('post.update')->middleware('auth');
+Route::patch('/post/edit/{post:id}/change_thumbnail', [PostController::class, 'updateThumbnail'])->name('post.update_thumbnail')->middleware('auth');
 
-Route::post('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
 
 /* Login Route */

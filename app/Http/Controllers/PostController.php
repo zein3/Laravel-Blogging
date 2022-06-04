@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -120,7 +121,47 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        if ($post->author->id != $request->user()->id) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'title' => ['required', 'max:120'],
+            'body' => ['required']
+        ]);
+
+        $post->title = $validated['title'];
+        $post->body = $validated['body'];
+        $post->save();
+
+        return redirect()->back()->with('message', 'Successfully updated content');
+    }
+
+    public function updateThumbnail(Request $request, Post $post) {
+        if ($post->author->id != $request->user()->id) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'thumbnail' => ['required', 'file', 'mimes:jpeg,bmp,png', 'max:2048'],
+        ]);
+
+        // upload new thumbnail
+        $newThumbnail = $validated['thumbnail']->store(env('THUMBNAIL_FOLDER'));
+
+        if ($newThumbnail) {
+            if (Str::of($post->thumbnail)->startsWith(env('THUMBNAIL_FOLDER'))) {
+                Storage::delete($post->thumbnail);
+            }
+
+            $post->thumbnail = $newThumbnail;
+            $post->save();
+
+            return redirect()->back()->with('message', 'Successfully updated thumbnail');
+        } else {
+            abort(500);
+        }
+
     }
 
     /**

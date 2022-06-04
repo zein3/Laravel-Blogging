@@ -101,14 +101,15 @@ class UserController extends Controller
                 'profile_picture' => ['required', 'file', 'mimes:jpeg,png,bmp', 'max:512'],
             ]);
 
-            // if user's current profile picture is an uploaded profile picture, delete it from storage
-            if (Str::of($user->profile_picture)->startsWith(env('THUMBNAIL_FOLDER'))) {
-                Storage::delete($user->profile_picture);
-            }
 
             $newProfilePicture = $validated['profile_picture']->store(env('THUMBNAIL_FOLDER'));
 
             if ($newProfilePicture) {
+                // if user's current profile picture is an uploaded profile picture, delete it from storage
+                if (Str::of($user->profile_picture)->startsWith(env('THUMBNAIL_FOLDER'))) {
+                    Storage::delete($user->profile_picture);
+                }
+
                 $user->profile_picture = $newProfilePicture;
                 $user->save();
                 return redirect()->back();

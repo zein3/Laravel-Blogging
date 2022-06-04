@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SavedPostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\EmailVerificationController;
@@ -70,3 +71,9 @@ Route::delete('/profile_picture/{user:id}', [UserController::class, 'destroyProf
 Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->name('verification.notice')->middleware('auth');
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware(['auth', 'signed']);
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])->name('verification.send')->middleware('auth');
+
+
+
+/* Tags Route */
+Route::post('/tags/{post:id}', [TagController::class, 'store'])->name('tag.store')->middleware('auth');
+Route::delete('/tags/{post:id}/{tag:id}', [TagController::class, 'destroy'])->name('tag.destroy')->middleware('auth');

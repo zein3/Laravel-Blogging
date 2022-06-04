@@ -96,12 +96,19 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified post.
      *
+     * @param \Illuminate\Http\Request   $request
      * @param  \App\Models\Post          $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
-        //
+        if ($post->author->id != $request->user()->id) {
+            abort(403);
+        }
+
+        return view('post.edit', [
+            'post' => $post
+        ]);
     }
 
     /**

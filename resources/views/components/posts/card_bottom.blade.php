@@ -56,3 +56,11 @@
     @endif
     @endauth
 </div>
+
+@auth
+@if($post->author->id == Auth::user()->id)
+<div class="d-grid mb-2">
+    <a href="{{ route('post.edit', ['post' => $post]) }}" class="btn btn-primary">Edit post</a>
+</div>
+@endif
+@endauth

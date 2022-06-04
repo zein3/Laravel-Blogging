@@ -6,7 +6,8 @@ const editor = new Editor({
     previewStyle: 'vertical',
     height: `${window.screen.height}px`,
     initialEditType: 'wysiwyg',
-    usageStatistics: false
+    usageStatistics: false,
+    initialValue: document.querySelector('#editor_result').value
 });
 
 editor.getMarkdown();

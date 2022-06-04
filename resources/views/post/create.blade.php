@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="mt-2 shadow" id="editor"></div>
-    <input class="d-none" id="editor_result" name="body" />
+    <input class="d-none" id="editor_result" name="body" value="{{ old('body') ?? '' }}" />
     <div class="d-grid mt-2 shadow">
         <button class="btn btn-primary" id="post_submit">Post</button>
     </div>

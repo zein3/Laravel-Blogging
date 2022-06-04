@@ -25,16 +25,16 @@
 <div class="card mt-3 p-2 shadow">
     <h4 class="fw-bold text-center">Edit Content</h4>
     <div class="card-body">
-        <form action="" method="POST">
+        <form action="" method="POST" id="post_form">
             @csrf
             @method('PATCH')
             <x-form.input value="{{ $post->title }}" type="text" name="title" id="title">
                 Title:
             </x-form.input>
             <div class="mt-2 shadow" id="editor"></div>
-            <input class="d-none" id="editor_result" name="body" />
+            <input class="d-none" id="editor_result" name="body" value="{{ old('body') ?? $post->body }}" />
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">
+                <button id="post_submit" type="submit" class="btn btn-primary">
                     Edit Content
                 </button>
             </div>
@@ -51,4 +51,6 @@
         </form>
     </div>
 </div>
+
+<script src="/js/editor.js"></script>
 @endsection

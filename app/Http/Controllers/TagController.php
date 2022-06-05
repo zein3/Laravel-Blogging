@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\PostTag;
@@ -25,14 +26,18 @@ class TagController extends Controller
             'tag' => ['required']
         ]);
 
-        $tag = Tag::firstOrCreate([
-            'name' => $validated['tag']
-        ]);
+        $tags = Str::of($validated['tag'])->split('/[\s,]+/');
 
-        PostTag::create([
-            'post_id' => $post->id,
-            'tag_id' => $tag->id
-        ]);
+        foreach ($tags as $tagName) {
+            $tag = Tag::firstOrCreate([
+                'name' => Str::of($tagName)->squish()
+            ]);
+
+            PostTag::create([
+                'post_id' => $post->id,
+                'tag_id' => $tag->id
+            ]);
+        }
 
         return redirect()->back()->with('message', 'successfully added tag');
     }

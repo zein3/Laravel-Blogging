@@ -64,6 +64,9 @@
             <x-form.input type="text" name="tag" id="tag">
                 Add tag:
             </x-form.input>
+            <span class="fs-6 fw-light">
+                You can separate tags by comma
+            </span>
 
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Add tag</button>

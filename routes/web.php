@@ -77,4 +77,4 @@ Route::post('/email/verification-notification', [EmailVerificationController::cl
 
 /* Tags Route */
 Route::post('/tags/{post:id}', [TagController::class, 'store'])->name('tag.store')->middleware('auth');
-Route::delete('/tags/{post:id}/{tag:id}', [TagController::class, 'destroy'])->name('tag.destroy')->middleware('auth');
+Route::delete('/tags/delete/{post:id}/{tag:id}', [TagController::class, 'destroy'])->name('tag.destroy')->middleware('auth');

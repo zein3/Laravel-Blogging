@@ -45,9 +45,29 @@
 <div class="card mt-3 p-2 shadow">
     <h4 class="fw-bold text-center">Add/Remove Tags</h4>
     <div class="card-body">
-        <form action="" method="POST">
+        <div class="d-flex flex-row justify-content-start align-items-center py-2">
+            @foreach($post->tags as $tag)
+            <form method="POST" action="{{ route('tag.destroy', ['post' => $post, 'tag' => $tag]) }}">
+                @csrf
+                @method('DELETE')
+                <a class="btn btn-outline-primary btn-sm me-1">
+                    <span class="me-2">
+                        #{{ $tag->name }}
+                    </span>
+                    <button class="btn-close" type="submit"></button>
+                </a>
+            </form>
+            @endforeach
+        </div>
+        <form action="{{ route('tag.store', ['post' => $post]) }}" method="POST">
             @csrf
-            @method('PATCH')
+            <x-form.input type="text" name="tag" id="tag">
+                Add tag:
+            </x-form.input>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Add tag</button>
+            </div>
         </form>
     </div>
 </div>

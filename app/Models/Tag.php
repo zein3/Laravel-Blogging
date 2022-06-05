@@ -10,6 +10,10 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     /**
      * Get all the posts with this tag.
      */
